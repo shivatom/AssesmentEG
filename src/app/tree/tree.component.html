@@ -1,0 +1,42 @@
+<div class="tree-wrapper">
+    @for (item of nodes; track $index) {
+    <app-node-tree [node]="item" [parentNode]="nodes"></app-node-tree>
+    }
+</div>
+
+<app-context-menu #groupMenu>
+    <ul>
+        <li (click)="editGroup()"><i class="ri-pencil-line"></i>Edit Group</li>
+        <li (click)="createChildNode()"><i class="ri-add-line"></i>Create Child Group</li>
+        <li (click)="addClinicians()"><i class="ri-add-line"></i>Add/Remove Clinicians</li>
+        <li (click)="deleteGroup()"><i class="ri-delete-bin-6-line"></i>Remove Group</li>
+    </ul>
+</app-context-menu>
+
+
+@if (this.showCliniciansForm ) {
+<div class="cliniciansGroup">
+    <h3>Clinicians Group</h3>
+    <div class="search">
+        <small>{{selectedNode.clinicians?.length || 0}} records displayed</small>
+        <div><input type="text" [(ngModel)]="cliniciansValue"><button type="button" [disabled]="!cliniciansValue"
+                (click)="updateCliniciansData()">Add</button></div>
+    </div>
+    <table>
+        <tr>
+            <th>Name </th>
+            <th>Group Name</th>
+            <th>Remove From Group</th>
+        </tr>
+        @for (item of selectedNode.clinicians; track $index) {
+        <tr>
+            <td>{{item.name}}</td>
+            <td> {{item.groupName}} </td>
+            <td>
+                <i class="ri-delete-bin-6-line c-pointer" (click)="deleteClinician(item)"></i>
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+}

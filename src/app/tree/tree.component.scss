@@ -1,0 +1,43 @@
+.cliniciansGroup {
+    background: #f7f7f7;
+    padding: 30px;
+
+    h3 {
+        margin: 0px;
+    }
+
+    .search {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+
+    table {
+        width: 100%;
+        border: #dfdfdf solid 1px;
+        margin-top: 20px;
+        tr {
+            th {
+                padding: 9px;
+                font-weight: normal;
+                color: #262626;
+                text-align: center;
+            }
+        }
+        tr:nth-child(even) {
+            background-color: #f6f6f6;
+            /* Light Gray for even rows */
+
+            text-align: center;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+            /* White for odd rows */
+
+            text-align: center;
+        }
+    }
+}
+
+

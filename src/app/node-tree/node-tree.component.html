@@ -1,0 +1,31 @@
+<div class="node">
+    <div class="node-wrapper">
+        @if (isNode(node)) {
+        <i class=" c-pointer"
+            class="node-icon"
+            [ngClass]="{'ri-add-box-line': !node.expanded, 'ri-checkbox-indeterminate-line': node.expanded , 'top-level': node.topLevel }"
+            (click)="toggleNode(node)"></i>
+        }
+        <div class="node-text">
+            @if (node.editMode) {
+            <input type="text" [value]="node.title" #val />
+            <i class="ri-save-line c-pointer" (click)="saveNode(val.value, node)"></i>
+            <i class="ri-close-circle-line c-pointer" (click)="clearNode(node)"></i>
+            } @else {
+            <p [ngClass]="{'leaf_node': !isNode(node)}"><i [ngClass]="node.icon"></i>{{node.title}}
+                @if(!node.topLevel) {
+                    <i class="ri-more-2-fill c-pointer optionMenu" (click)="showMenu($event, node)"></i>
+                }
+            </p>
+            }
+        </div>
+
+    </div>
+    @if (node.expanded) {
+    <div class="sub-node">
+        @for (item of node.children; track $index) {
+        <app-node-tree [node]="item" [parentNode]="node"></app-node-tree>
+        }
+    </div>
+    }
+</div>
